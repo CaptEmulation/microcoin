@@ -1,3 +1,5 @@
+microCoin MRC - Relaunch January 10th 2014
+
 microCoin
 ==============
 microCoin uses scrypt-jane POW mining with modified nFactor.
