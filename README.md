@@ -10,7 +10,7 @@ Block Time: 120 seconds
 Max moneysupply: 100,000,000,000 MRC
 
 Crypto Currency blocks:
-0	   - 100 			Block size 0.01 Premined 0.01 blocks under 1 coin. ** so network will not get forked with the fair launch. (This may be first one :)
+0	   - 100 			Block size 0.01 Premined 0.01 blocks under 1 coin. ** so network will not get forked with the fair launch.
 1001   - 160000 Blocks	Launch start. Increasing block size on every blocks with +1 steps.
 160001 - 310000			Decreasing block size on every blocks with -1 steps.
 310001 - ---->			Decreasing block size very slowly. Slowing block size down with -0.01 steps, untill block size is 1000.
