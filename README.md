@@ -25,8 +25,7 @@ Block time: 32 seconds
 
 microCoin block reward: :
 
-0- 10000 			Block size 0.001  Premined 0.001 blocks under 1 coin. ** so network will not get forked with the fair launch.
-
+0- 10000 			Block size 0.0001  Premined 10000 blocks with 0.0001 amount = 1 coin.
 10001   - 160000        	Launch start. Increasing block size on every blocks with +1 steps.  
 
 160001  - 310000		Decreasing block size on every blocks with -1 steps. 
