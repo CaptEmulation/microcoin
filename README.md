@@ -20,14 +20,6 @@ Premine: one coin. For network test and security purpose!
 Block time: 32 seconds
  
 
-
-microCoin block reward: :
-
-0- 10000 			Block size 0.0001  Premined 10000 blocks with 0.0001 amount = 1 coin. 
-10001   - 160000        	Launch start. Increasing block size on every blocks with +1 steps.
-160001  - 310000		Decreasing block size on every blocks with -1 steps.
-310001  - ---->			Decreasing block size very slowly. Slowing block size down with -0.01 steps, untill block size is 1000. 
------>				Rest of blocks are 1000 coins flat. Then network working forever with stake blocks. 
-
 microCoin bitcointalk thread:
+
 https://bitcointalk.org/index.php?topic=397679.0
