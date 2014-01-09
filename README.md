@@ -15,7 +15,8 @@ microCoin can equally be used as a long-term trading instrument for investors as
 
 
 Max moneysupply: 100,000,000,000 MRC
-Premine: one coin. For network test and security purpose!
+
+Premine: 1 coin. (For network test and security purpose).
 
 Block time: 32 seconds
  
