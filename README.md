@@ -15,7 +15,15 @@ microCoin can equally be used as a long-term trading instrument for investors as
 
 
 Max moneysupply: 100,000,000,000 MRC
-Premine: one coin. For network test and security purpose!
+
+Block Rewards:
+
+Blocks 1-10,000 - 0.001 MRC (To set difficulty and test network)
+Blocks 10,000-160,000 - Block reward is the same as block number. (For fair launch)
+Example: Block number 10,000 = 10,000MRC, Block number 160,000 = 160,000MRC
+Blocks 160,000 - 310,000 - Block reward descending by one for each block. (For deflation)
+Example: Block number 160,000 = 160,000MRC, Block number 160,001 = 159,999MRC and so on.
+310,000+ - Block reward is a solid 10,000
 
 Block time: 32 seconds
  
