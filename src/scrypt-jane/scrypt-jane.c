@@ -27,7 +27,7 @@
 #define scrypt_maxpfactor 25  /* (1 << 25) = ~33 million */
 
 #include <stdio.h>
-#include <malloc/malloc.h>
+// #include <malloc/malloc.h> * Disabled because linux compiler not include that file on default.
 
 static void NORETURN
 scrypt_fatal_error_default(const char *msg) {
