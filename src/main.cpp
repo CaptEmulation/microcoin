@@ -1019,8 +1019,8 @@ int64 GetProofOfWorkReward( int nHeight, uint256 prevHash)
 		}			
 		else if(nHeight >= 310000)    				// Decreasing block size, slowing down with -0.01 steps.  ** Blocks: 310001 - rest
         {
-				if (nHeight <= 315000) 	nSubsidy = (310000 - ((nHeight - 310000) * 0.01)) * COIN; 
-				 if	 (nHeight > 315000) nSubsidy = (3100 - ((nHeight * 0.01) -310000)) - 300000; //Blockreward fixed decreasing 0.01 steps
+				if (nHeight <= 311300) 	nSubsidy = (310000 - ((nHeight - 310000) * 0.01)) * COIN; 
+				 if	 (nHeight > 311300) nSubsidy = (3100 - ((nHeight * 0.01) -310000)) - 300000; //Blockreward fixed decreasing 0.01 steps
 				if (nSubsidy <= 1000) nSubsidy = 1000; // Rest of blocks are 1000 coins. Then network working forever with stake blocks.
 		}	  
     return nSubsidy;
