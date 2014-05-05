@@ -1030,7 +1030,12 @@ int64 GetProofOfWorkReward( int nHeight, uint256 prevHash)
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		nSubsidy = (10000 - ((nHeight - 318000) * 0.01)) * COIN;
+=======
+		nSubsidy = (10000 - ((nHeight - 320000) * 0.01)) * COIN;
+>>>>>>> 453737d0a33325d82e14c96235e55eb4d26956ac
+>>>>>>> c66c46275ea68f6b12db1b4eeb2376944f3af409
 =======
 		nSubsidy = (10000 - ((nHeight - 320000) * 0.01)) * COIN;
 >>>>>>> 453737d0a33325d82e14c96235e55eb4d26956ac
