@@ -1025,7 +1025,11 @@ int64 GetProofOfWorkReward( int nHeight, uint256 prevHash)
 
 		else
 		{
+<<<<<<< HEAD
 		nSubsidy = (10000 - ((nHeight - 318000) * 0.01)) * COIN;
+=======
+		nSubsidy = (10000 - ((nHeight - 320000) * 0.01)) * COIN;
+>>>>>>> 453737d0a33325d82e14c96235e55eb4d26956ac
 		if (nSubsidy <= 1000 * COIN) nSubsidy = 1000 * COIN; // Rest of blocks are 1000 coins. Then network working forever with stake blocks.
 		}
 
