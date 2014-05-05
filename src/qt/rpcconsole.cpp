@@ -14,7 +14,7 @@
 #include <QScrollBar>
 
 #include <openssl/crypto.h>
-
+ 
 // TODO: make it possible to filter out categories (esp debug messages when implemented)
 // TODO: receive errors and debug messages through ClientModel
 
