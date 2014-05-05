@@ -13,7 +13,7 @@
 #include "code/scrypt-jane-test-vectors.h"
 
 
-#define scrypt_maxNfactor 30  /* (1 << (30 + 1)) = ~2 billion */
+#define scrypt_maxN 30  /* (1 << (30 + 1)) = ~2 billion */
 #if (SCRYPT_BLOCK_BYTES == 64)
 #define scrypt_r_32kb 8 /* (1 << 8) = 256 * 2 blocks in a chunk * 64 bytes = Max of 32kb in a chunk */
 #elif (SCRYPT_BLOCK_BYTES == 128)
@@ -23,13 +23,13 @@
 #elif (SCRYPT_BLOCK_BYTES == 512)
 #define scrypt_r_32kb 5 /* (1 << 5) = 32 * 2 blocks in a chunk * 512 bytes = Max of 32kb in a chunk */
 #endif
-#define scrypt_maxrfactor scrypt_r_32kb /* 32kb */
-#define scrypt_maxpfactor 25  /* (1 << 25) = ~33 million */
+#define scrypt_maxr scrypt_r_32kb /* 32kb */
+#define scrypt_maxp 25  /* (1 << 25) = ~33 million */
 
 #include <stdio.h>
-// #include <malloc/malloc.h> * Disabled because linux compiler not include that file on default.
+// #include <malloc.h>
 
-static void NORETURN
+static void
 scrypt_fatal_error_default(const char *msg) {
 	fprintf(stderr, "%s\n", msg);
 	exit(1);
@@ -38,12 +38,12 @@ scrypt_fatal_error_default(const char *msg) {
 static scrypt_fatal_errorfn scrypt_fatal_error = scrypt_fatal_error_default;
 
 void
-scrypt_set_fatal_error(scrypt_fatal_errorfn fn) {
+scrypt_set_fatal_error_default(scrypt_fatal_errorfn fn) {
 	scrypt_fatal_error = fn;
 }
 
 static int
-scrypt_power_on_self_test(void) {
+scrypt_power_on_self_test() {
 	const scrypt_test_setting *t;
 	uint8_t test_digest[64];
 	uint32_t i;
@@ -148,11 +148,11 @@ scrypt(const uint8_t *password, size_t password_len, const uint8_t *salt, size_t
 	}
 #endif
 
-	if (Nfactor > scrypt_maxNfactor)
+	if (Nfactor > scrypt_maxN)
 		scrypt_fatal_error("scrypt: N out of range");
-	if (rfactor > scrypt_maxrfactor)
+	if (rfactor > scrypt_maxr)
 		scrypt_fatal_error("scrypt: r out of range");
-	if (pfactor > scrypt_maxpfactor)
+	if (pfactor > scrypt_maxp)
 		scrypt_fatal_error("scrypt: p out of range");
 
 	N = (1 << (Nfactor + 1));

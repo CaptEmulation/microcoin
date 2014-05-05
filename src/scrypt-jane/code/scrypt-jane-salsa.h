@@ -11,18 +11,9 @@ typedef uint32_t scrypt_mix_word_t;
 /* must have these here in case block bytes is ever != 64 */
 #include "scrypt-jane-romix-basic.h"
 
-#include "scrypt-jane-mix_salsa-xop.h"
 #include "scrypt-jane-mix_salsa-avx.h"
 #include "scrypt-jane-mix_salsa-sse2.h"
 #include "scrypt-jane-mix_salsa.h"
-
-#if defined(SCRYPT_SALSA_XOP)
-	#define SCRYPT_CHUNKMIX_FN scrypt_ChunkMix_xop
-	#define SCRYPT_ROMIX_FN scrypt_ROMix_xop
-	#define SCRYPT_ROMIX_TANGLE_FN salsa_core_tangle_sse2
-	#define SCRYPT_ROMIX_UNTANGLE_FN salsa_core_tangle_sse2
-	#include "scrypt-jane-romix-template.h"
-#endif
 
 #if defined(SCRYPT_SALSA_AVX)
 	#define SCRYPT_CHUNKMIX_FN scrypt_ChunkMix_avx
@@ -50,14 +41,8 @@ typedef uint32_t scrypt_mix_word_t;
 
 #if !defined(SCRYPT_CHOOSE_COMPILETIME)
 static scrypt_ROMixfn
-scrypt_getROMix(void) {
+scrypt_getROMix() {
 	size_t cpuflags = detect_cpu();
-
-#if defined(SCRYPT_SALSA_XOP)
-	if (cpuflags & cpu_xop)
-		return scrypt_ROMix_xop;
-	else
-#endif
 
 #if defined(SCRYPT_SALSA_AVX)
 	if (cpuflags & cpu_avx)
@@ -78,14 +63,9 @@ scrypt_getROMix(void) {
 
 #if defined(SCRYPT_TEST_SPEED)
 static size_t
-available_implementations(void) {
+available_implementations() {
 	size_t cpuflags = detect_cpu();
 	size_t flags = 0;
-
-#if defined(SCRYPT_SALSA_XOP)
-	if (cpuflags & cpu_xop)
-		flags |= cpu_xop;
-#endif
 
 #if defined(SCRYPT_SALSA_AVX)
 	if (cpuflags & cpu_avx)
@@ -103,18 +83,13 @@ available_implementations(void) {
 
 
 static int
-scrypt_test_mix(void) {
+scrypt_test_mix() {
 	static const uint8_t expected[16] = {
 		0x41,0x1f,0x2e,0xa3,0xab,0xa3,0x1a,0x34,0x87,0x1d,0x8a,0x1c,0x76,0xa0,0x27,0x66,
 	};
 
 	int ret = 1;
 	size_t cpuflags = detect_cpu();
-
-#if defined(SCRYPT_SALSA_XOP)
-	if (cpuflags & cpu_xop)
-		ret &= scrypt_test_mix_instance(scrypt_ChunkMix_xop, salsa_core_tangle_sse2, salsa_core_tangle_sse2, expected);
-#endif
 
 #if defined(SCRYPT_SALSA_AVX)
 	if (cpuflags & cpu_avx)
