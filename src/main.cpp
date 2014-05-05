@@ -1002,7 +1002,7 @@ unsigned char GetNfactor(int64 nTimestamp) {
 
 int64 GetProofOfWorkReward( int nHeight, uint256 prevHash)
 {
-	
+	 
 // microCoin block size.
         int64 nSubsidy = 1 * COIN;
         if(nHeight < 10000)    
