@@ -127,7 +127,7 @@ public:
     void retranslateUi(QDialog *AboutDialog)
     {
         AboutDialog->setWindowTitle(QApplication::translate("AboutDialog", "About microCoin", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("AboutDialog", "<b>microCoin V 1.1.1.1</b> First version", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("AboutDialog", "<b>microCoin </b> ", 0, QApplication::UnicodeUTF8));
         copyrightLabel->setText(QApplication::translate("AboutDialog", "microCoin: Copyright \302\251 2014 micro-coiner!", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("AboutDialog", "\n"
 "This is experimental software.\n"

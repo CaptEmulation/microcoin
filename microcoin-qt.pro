@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = microCoin
-VERSION = 1.0.0
+VERSION = 1.1.2
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE SCRYPT_CHACHA SCRYPT_KECCAK512 BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
 CONFIG += no_include_pwd
@@ -10,8 +10,7 @@ CONFIG += thread
 windows:LIBS += -lshlwapi
 LIBS += $$join(BOOST_LIB_PATH,,-L,) $$join(BDB_LIB_PATH,,-L,) $$join(OPENSSL_LIB_PATH,,-L,) $$join(QRENCODE_LIB_PATH,,-L,)
 LIBS += -lssl -lcrypto -ldb_cxx$$BDB_LIB_SUFFIX
-windows {
-LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
+windows:LIBS += -lws2_32 -lole32 -loleaut32 -luuid -lgdi32
 LIBS += -lboost_system-mgw46-mt-sd-1_53 -lboost_filesystem-mgw46-mt-sd-1_53 -lboost_program_options-mgw46-mt-sd-1_53 -lboost_thread-mgw46-mt-sd-1_53
 BOOST_LIB_SUFFIX=-mgw46-mt-sd-1_53
 BOOST_INCLUDE_PATH=C:/deps/boost
@@ -22,7 +21,6 @@ OPENSSL_INCLUDE_PATH=c:/deps/ssl/include
 OPENSSL_LIB_PATH=c:/deps/ssl
 MINIUPNPC_LIB_PATH=c:/deps/miniupnpc
 MINIUPNPC_INCLUDE_PATH=c:/deps
-}
 
 OBJECTS_DIR = build
 MOC_DIR = build
@@ -321,13 +319,8 @@ isEmpty(BOOST_THREAD_LIB_SUFFIX) {
     BOOST_THREAD_LIB_SUFFIX = $$BOOST_LIB_SUFFIX
 }
 
-# Paths are different depending on if macports or homebrew is used to build dependencies
-
 isEmpty(BDB_LIB_PATH) {
-#macports
-    #macx:BDB_LIB_PATH = /opt/local/lib/db48
-#homebrew
-    macx:BDB_LIB_PATH = /usr/local/Cellar/berkeley-db4/4.8.30/lib/
+    macx:BDB_LIB_PATH = /opt/local/lib/db48
 }
 
 isEmpty(BDB_LIB_SUFFIX) {
@@ -335,34 +328,15 @@ isEmpty(BDB_LIB_SUFFIX) {
 }
 
 isEmpty(BDB_INCLUDE_PATH) {
-#macports
-    #macx:BDB_INCLUDE_PATH = /opt/local/include/db48
-#homebrew
-    macx:BDB_INCLUDE_PATH = /usr/local/Cellar/berkeley-db4/4.8.30/include/
+    macx:BDB_INCLUDE_PATH = /opt/local/include/db48
 }
 
 isEmpty(BOOST_LIB_PATH) {
-#macports
-    #macx:BOOST_LIB_PATH = /opt/local/lib
-#homebrew
-    macx:BOOST_LIB_PATH = /usr/local/Cellar/boost/1.55.0/lib/
+    macx:BOOST_LIB_PATH = /opt/local/lib
 }
 
 isEmpty(BOOST_INCLUDE_PATH) {
-#macports
-    #macx:BOOST_INCLUDE_PATH = /opt/local/include
-#homebrew
-    macx:BOOST_INCLUDE_PATH = /usr/local/Cellar/boost/1.55.0/include/
-}
-
-isEmpty(OPENSSL_INCLUDE_PATH) {
-# homebrew
-    macx:OPENSSL_INCLUDE_PATH = /usr/local/Cellar/openssl/1.0.1e/include/
-}
-
-isEmpty(OPENSSL_LIB_PATH) {
-#homebrew
-    macx:OPENSSL_LIB_PATH = /usr/local/Cellar/openssl/1.0.1e/lib/
+    macx:BOOST_INCLUDE_PATH = /opt/local/include
 }
 
 windows:DEFINES += WIN32
@@ -388,9 +362,9 @@ macx:HEADERS += src/qt/macdockiconhandler.h
 macx:OBJECTIVE_SOURCES += src/qt/macdockiconhandler.mm
 macx:LIBS += -framework Foundation -framework ApplicationServices -framework AppKit
 macx:DEFINES += MAC_OSX MSG_NOSIGNAL=0
-macx:ICON = src/qt/res/icons/microcoin.icns
+macx:ICON = src/qt/res/icons/bitcoin.icns
 macx:TARGET = "microCoin-Qt"
-macx:QMAKE_CFLAGS_THREAD += -pthread -no-integrated-as
+macx:QMAKE_CFLAGS_THREAD += -pthread
 macx:QMAKE_LFLAGS_THREAD += -pthread
 macx:QMAKE_CXXFLAGS_THREAD += -pthread
 
