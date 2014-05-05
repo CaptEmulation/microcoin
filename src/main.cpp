@@ -1002,7 +1002,7 @@ unsigned char GetNfactor(int64 nTimestamp) {
 
 int64 GetProofOfWorkReward( int nHeight, uint256 prevHash)
 {
-	
+	 
 // microCoin block size.
         int64 nSubsidy = 1 * COIN;
         if(nHeight < 10000)    
@@ -1013,16 +1013,36 @@ int64 GetProofOfWorkReward( int nHeight, uint256 prevHash)
         {
 				nSubsidy = nHeight * COIN;
 		}	
-		else if(nHeight >= 160000 && nHeight < 310000) // decreasing block size on every blocks -1.  ** Blocks: 160001 - 310000
-        {
-				nSubsidy = (160000 - (nHeight -160000) ) * COIN;
-		}			
-		else if(nHeight >= 310000)    				// Decreasing block size, slowing down with -0.01 steps.  ** Blocks: 310001 - rest
-        {
-				if (nHeight <= 311300) 	nSubsidy = (310000 - ((nHeight - 310000) * 0.01)) * COIN; 
-				 if	 (nHeight > 311300) nSubsidy = (3100 - ((nHeight * 0.01) -310000)) - 300000; //Blockreward fixed decreasing 0.01 steps
-				if (nSubsidy <= 1000) nSubsidy = 1000; // Rest of blocks are 1000 coins. Then network working forever with stake blocks.
-		}	  
+		else if (nHeight >= 310000 && nHeight <= 315000) // 310,000 block rewards, decreasing 0.01 on every block
+		{
+		nSubsidy = (310000 - ((nHeight - 310000) * 0.01)) * COIN;
+		}
+
+		else if (nHeight <= 318000) // 0.01 block rewards (wrong logic as coin spec, but we need to keep it because it's already happened)
+		{
+		nSubsidy = (3100 - ((nHeight * 0.01) - 310000)) - 300000;
+		}
+
+		else
+		{
+<<<<<<< HEAD
+		nSubsidy = (10000 - ((nHeight - 318000) * 0.01)) * COIN;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+		nSubsidy = (10000 - ((nHeight - 318000) * 0.01)) * COIN;
+=======
+		nSubsidy = (10000 - ((nHeight - 320000) * 0.01)) * COIN;
+>>>>>>> 453737d0a33325d82e14c96235e55eb4d26956ac
+>>>>>>> c66c46275ea68f6b12db1b4eeb2376944f3af409
+=======
+		nSubsidy = (10000 - ((nHeight - 320000) * 0.01)) * COIN;
+>>>>>>> 453737d0a33325d82e14c96235e55eb4d26956ac
+>>>>>>> c66c46275ea68f6b12db1b4eeb2376944f3af409
+		if (nSubsidy <= 1000 * COIN) nSubsidy = 1000 * COIN; // Rest of blocks are 1000 coins. Then network working forever with stake blocks.
+		}
+
+		
     return nSubsidy;
 }
  
