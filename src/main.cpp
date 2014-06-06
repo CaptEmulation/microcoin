@@ -1002,7 +1002,7 @@ unsigned char GetNfactor(int64 nTimestamp) {
 
 int64 GetProofOfWorkReward( int nHeight, uint256 prevHash)
 {
-	
+	 
 // microCoin block size.
         int64 nSubsidy = 1 * COIN;
         if(nHeight < 10000)    
@@ -1033,10 +1033,10 @@ int64 GetProofOfWorkReward( int nHeight, uint256 prevHash)
 		if (nSubsidy <= 1000 * COIN) nSubsidy = 1000 * COIN; // Rest of blocks are 1000 coins. Then network working forever with stake blocks.
 		}
 
-		
+
     return nSubsidy;
 }
- 
+
 // ppcoin: miner's coin stake is rewarded based on coin age spent (coin-days)
 int64 GetProofOfStakeReward(int64 nCoinAge)
 {
